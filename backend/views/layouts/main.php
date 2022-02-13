@@ -81,16 +81,14 @@ AppAsset::register($this);
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProductCategories"
                aria-expanded="true" aria-controls="collapseProductCategories">
                 <i class="fas fa-fw fa-wrench"></i>
-                <span>Product Categories</span>
+                <span>Category</span>
             </a>
             <div id="collapseProductCategories" class="collapse" aria-labelledby="headingProductCategories"
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="utilities-color.html">Colors</a>
-                    <a class="collapse-item" href="utilities-border.html">Borders</a>
-                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                    <a class="collapse-item" href="utilities-other.html">Other</a>
+                    <h6 class="collapse-header">Menu</h6>
+                    <a class="collapse-item" href="<?= \yii\helpers\Url::to(['category/index']) ?>">List</a>
+                    <a class="collapse-item" href="<?= \yii\helpers\Url::to(['category/create']) ?>">Create</a>
                 </div>
             </div>
         </li>
@@ -335,7 +333,7 @@ AppAsset::register($this);
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                <?= Yii::$app->user->identity->getDisplayName(); ?>
+                                <?php if (Yii::$app->user->identity) {echo Yii::$app->user->identity->getDisplayName();} else {echo 'Guess';}  ?>
                             </span>
                             <img class="img-profile rounded-circle"
                                  src="img/undraw_profile.svg">
@@ -368,7 +366,9 @@ AppAsset::register($this);
             </nav>
             <!-- End of Topbar -->
 
-            <?= $content ?>
+            <div class="p-3">
+                <?= $content ?>
+            </div>
         </div>
         <!-- End of Main Content -->
 
